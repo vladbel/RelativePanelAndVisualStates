@@ -8,9 +8,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="RootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <RelativePanel x:Name="RootPanel">
-
+    <Grid x:Name="RootGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="Header"
+                   Grid.Row="0"
+                   FontSize="30"
+                   Foreground="Coral">
+            Header Placeholder
+        </TextBlock>
+        <RelativePanel x:Name="RootPanel"
+                       Grid.Row="1">
             <Border x:Name="MediaElementContainer"
                     local:MediaElementContainerHelper.Container="{Binding ElementName=RootGrid, Mode=OneWay}"
                     HorizontalAlignment="Center">
