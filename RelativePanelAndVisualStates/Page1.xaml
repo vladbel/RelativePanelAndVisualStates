@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="RelativePanelAndVisualStates.MainPage"
+    x:Class="RelativePanelAndVisualStates.Page1"
     x:Name="Root"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,20 +10,9 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <RelativePanel>
-            <MediaElement x:Name="MediaElementMobile"
-                          x:DeferLoadStrategy="Lazy"
-                          IsLooping="True"
-                          Source="/Assets/Video/gse_hub_v2.mp4"
-                          Visibility="Collapsed"
-                          Height="400"
-                          Width="{Binding ElementName=Root, Path=ActualWidth}"/>
-            <MediaElement x:Name="MediaElementDesktop"
-                          x:DeferLoadStrategy="Lazy"
-                       IsLooping="True"
-                       Source="/Assets/Video/gse_hub_v2.mp4"
-                       Visibility="Collapsed"
-                       Height="{Binding ElementName=Root, Path=Height}"
-                       Width="600"/>
+
+            <Rectangle x:Name="MediaElement"
+                       Fill="Yellow"/>
             <Rectangle x:Name="HubConnectInstructions"
                        Height="100"
                        Width="100"
@@ -34,6 +23,7 @@
                        RelativePanel.Below="HubConnectInstructions"
                        RelativePanel.AlignLeftWith="HubConnectInstructions">
             </Rectangle>
+            <TextBlock RelativePanel.Below="NextInstructions" RelativePanel.AlignLeftWith="NextInstructions">Page1</TextBlock>
         </RelativePanel>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -42,10 +32,11 @@
                         <AdaptiveTrigger MinWindowWidth="720" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MediaElementDesktop.Visibility" Value="Visible" />
-                        <Setter Target="MediaElementMobile.Visibility" Value="Collapsed" />
-                        <Setter Target="HubConnectInstructions.Fill" Value="Green" />
-                        <Setter Target="HubConnectInstructions.(RelativePanel.RightOf)" Value="MediaElementDesktop" />
+                        <Setter Target="MediaElement.Width" Value="300" />
+                        <Setter Target="MediaElement.Height" Value="300" />
+                        <Setter Target="MediaElement.Fill" Value="Pink" />
+                        <Setter Target="HubConnectInstructions.Fill" Value="Yellow" />
+                        <Setter Target="HubConnectInstructions.(RelativePanel.RightOf)" Value="MediaElement" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -53,10 +44,11 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MediaElementDesktop.Visibility" Value="Collapsed" />
-                        <Setter Target="MediaElementMobile.Visibility" Value="Visible" />
+                        <Setter Target="MediaElement.Width" Value="300" />
+                        <Setter Target="MediaElement.Height" Value="400" />
+                        <Setter Target="MediaElement.Fill" Value="Blue" />
                         <Setter Target="HubConnectInstructions.Fill" Value="Red" />
-                        <Setter Target="HubConnectInstructions.(RelativePanel.Below)" Value="MediaElementMobile" />
+                        <Setter Target="HubConnectInstructions.(RelativePanel.Below)" Value="MediaElement" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -64,3 +56,4 @@
     </Grid>
 
 </Page>
+

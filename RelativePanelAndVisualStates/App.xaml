@@ -5,4 +5,11 @@
     xmlns:local="using:RelativePanelAndVisualStates"
     RequestedTheme="Light">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:HeightToWidthConverter x:Key="HeightToWidthConverter" />
+            <local:WidthToHeightConverter x:Key="WidthToHeightConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>

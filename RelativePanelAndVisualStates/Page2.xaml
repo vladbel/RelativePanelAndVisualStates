@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="RelativePanelAndVisualStates.Page2"
+    x:Name="RootPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RelativePanelAndVisualStates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="RootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <RelativePanel x:Name="RootPanel">
+
+            <Border x:Name="MediaElementContainer"
+                    Height="{Binding ElementName=RootGrid, Path=Height, Mode=OneWay}"
+                    Width="{Binding ElementName=RootGrid,Path=Height, Converter={StaticResource HeightToWidthConverter}, Mode=OneWay}"
+                    HorizontalAlignment="Center">
+                <MediaElement x:Name="MediaElement"
+                              HorizontalAlignment="Center"
+                              IsLooping="True"
+                              Source="/Assets/Video/gse_hub_v2.mp4" />
+            </Border>
+
+            <Rectangle x:Name="HubConnectInstructions"
+                       Height="100"
+                       Width="300"
+                       Fill="Yellow"/>
+            <Rectangle x:Name="NextInstructions"
+                       Height="100" Width="400"
+                       Fill="PaleGreen"
+                       RelativePanel.AlignBottomWith="MediaElementContainer">
+            </Rectangle>
+        </RelativePanel>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MediaElementContainer.HorizontalAlignment" Value="Left" />
+                        <Setter Target="HubConnectInstructions.Fill" Value="Yellow" />
+                        <Setter Target="HubConnectInstructions.(RelativePanel.RightOf)" Value="MediaElementContainer" />
+                        <Setter Target="NextInstructions.(RelativePanel.Below)" Value="HubConnectInstructions" />
+                        <Setter Target="NextInstructions.(RelativePanel.AlignLeftWith)" Value="HubConnectInstructions" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="HubConnectInstructions.Fill" Value="Red" />
+                        <Setter Target="HubConnectInstructions.(RelativePanel.Above)" Value="NextInstructions" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+
+</Page>
+
