@@ -12,11 +12,9 @@
         <RelativePanel x:Name="RootPanel">
 
             <Border x:Name="MediaElementContainer"
-                    Height="{Binding ElementName=RootGrid, Path=Height, Mode=OneWay}"
-                    Width="{Binding ElementName=RootGrid,Path=Height, Converter={StaticResource HeightToWidthConverter}, Mode=OneWay}"
+                    local:MediaElementContainerHelper.Container="{Binding ElementName=RootGrid, Mode=OneWay}"
                     HorizontalAlignment="Center">
                 <MediaElement x:Name="MediaElement"
-                              HorizontalAlignment="Center"
                               IsLooping="True"
                               Source="/Assets/Video/gse_hub_v2.mp4" />
             </Border>
@@ -35,7 +33,7 @@
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
+                        <AdaptiveTrigger MinWindowWidth="720"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="MediaElementContainer.HorizontalAlignment" Value="Left" />
