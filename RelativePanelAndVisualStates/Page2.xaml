@@ -8,6 +8,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style TargetType="TextBlock" x:Key="HubconnectInstructionsStyle">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Foreground" Value="Purple"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="NextInstructionsStyle">
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Foreground" Value="Blue"/>
+        </Style>
+    </Page.Resources>
+
     <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -22,22 +33,22 @@
         <RelativePanel x:Name="RootPanel"
                        Grid.Row="1">
             <Border x:Name="MediaElementContainer"
-                    local:MediaElementContainerHelper.Container="{Binding ElementName=RootGrid, Mode=OneWay}"
-                    HorizontalAlignment="Center">
+                    local:MediaElementContainerHelper.Container="{Binding ElementName=RootGrid, Mode=OneWay}">
                 <MediaElement x:Name="MediaElement"
                               IsLooping="True"
                               Source="/Assets/Video/gse_hub_v2.mp4" />
             </Border>
+            <StackPanel x:Name="InstructionsContainer">
+                <TextBlock x:Name="HubConnectInstructions"
+                       Style="{StaticResource HubconnectInstructionsStyle}">
+                Hub Connect Instructions
+                </TextBlock>
+                <TextBlock x:Name="NextInstructions"
+                       Style="{StaticResource NextInstructionsStyle}">
+                Next Instructions
+                </TextBlock>
+            </StackPanel>
 
-            <Rectangle x:Name="HubConnectInstructions"
-                       Height="100"
-                       Width="300"
-                       Fill="Yellow"/>
-            <Rectangle x:Name="NextInstructions"
-                       Height="100" Width="400"
-                       Fill="PaleGreen"
-                       RelativePanel.AlignBottomWith="MediaElementContainer">
-            </Rectangle>
         </RelativePanel>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
@@ -46,11 +57,7 @@
                         <AdaptiveTrigger MinWindowWidth="720"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="MediaElementContainer.HorizontalAlignment" Value="Left" />
-                        <Setter Target="HubConnectInstructions.Fill" Value="Yellow" />
-                        <Setter Target="HubConnectInstructions.(RelativePanel.RightOf)" Value="MediaElementContainer" />
-                        <Setter Target="NextInstructions.(RelativePanel.Below)" Value="HubConnectInstructions" />
-                        <Setter Target="NextInstructions.(RelativePanel.AlignLeftWith)" Value="HubConnectInstructions" />
+                        <Setter Target="InstructionsContainer.(RelativePanel.RightOf)" Value="MediaElementContainer" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
@@ -58,8 +65,7 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="HubConnectInstructions.Fill" Value="Red" />
-                        <Setter Target="HubConnectInstructions.(RelativePanel.Above)" Value="NextInstructions" />
+                        <Setter Target="InstructionsContainer.(RelativePanel.AlignBottomWith)" Value="MediaElementContainer" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

@@ -44,6 +44,8 @@ namespace RelativePanelAndVisualStates
         {
             newSource.SizeChanged += (sender, e) => ResizeTargetElement(newSource, target);
             newSource.Unloaded += (sender, e) => RemoveContainerBindings(target, newSource);
+
+            ResizeTargetElement(newSource, target);
         }
 
         private static void RemoveContainerBindings(FrameworkElement target, FrameworkElement oldSource)
