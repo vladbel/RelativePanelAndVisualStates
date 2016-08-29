@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RelativePanelAndVisualStates.Common">
+    <Style TargetType="TextBlock" x:Key="HubconnectInstructionsStyle">
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Foreground" Value="Purple"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="NextInstructionsStyle">
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Foreground" Value="Blue"/>
+    </Style>
+    <Style x:Key="GSEInstructionsV2" TargetType="TextBlock">
+        <Setter Property="TextWrapping" Value="WrapWholeWords"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontFamily" Value="{StaticResource LightFontFamily}"/>
+        <Setter Property="Margin" Value="15"/>
+        <Setter Property="Foreground" Value="{StaticResource StandardPageForegroundBrush}" />
+    </Style>
+</ResourceDictionary>

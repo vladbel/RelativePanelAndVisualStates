@@ -8,17 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Page.Resources>
-        <Style TargetType="TextBlock" x:Key="HubconnectInstructionsStyle">
-            <Setter Property="FontSize" Value="26"/>
-            <Setter Property="Foreground" Value="Purple"/>
-        </Style>
-        <Style TargetType="TextBlock" x:Key="NextInstructionsStyle">
-            <Setter Property="FontSize" Value="26"/>
-            <Setter Property="Foreground" Value="Blue"/>
-        </Style>
-    </Page.Resources>
-
     <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -33,18 +22,21 @@
         <RelativePanel x:Name="RootPanel"
                        Grid.Row="1">
             <Border x:Name="MediaElementContainer"
-                    local:MediaElementContainerHelper.Container="{Binding ElementName=RootGrid, Mode=OneWay}">
+                    local:MediaElementContainerHelper.Container="{Binding ElementName=RootPanel, Mode=OneWay}"
+                    Background="Beige">
                 <MediaElement x:Name="MediaElement"
                               IsLooping="True"
                               Source="/Assets/Video/gse_hub_v2.mp4" />
             </Border>
-            <StackPanel x:Name="InstructionsContainer">
+            <StackPanel x:Name="InstructionsContainer"
+                        Background="{StaticResource StandardPageBackgroundBrush}"
+                        Opacity="0.5">
                 <TextBlock x:Name="HubConnectInstructions"
-                       Style="{StaticResource HubconnectInstructionsStyle}">
+                       Style="{StaticResource  GSEInstructionsV2}">
                 Hub Connect Instructions
                 </TextBlock>
                 <TextBlock x:Name="NextInstructions"
-                       Style="{StaticResource NextInstructionsStyle}">
+                       Style="{StaticResource  GSEInstructionsV2}">
                 Next Instructions
                 </TextBlock>
             </StackPanel>
@@ -60,11 +52,15 @@
                         <Setter Target="InstructionsContainer.(RelativePanel.RightOf)" Value="MediaElementContainer" />
                     </VisualState.Setters>
                 </VisualState>
+                
                 <VisualState>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="MediaElementContainer.(RelativePanel.AlignHorizontalCenterWithPanel)" Value="True" />
+                        <Setter Target="InstructionsContainer.(RelativePanel.AlignRightWith)" Value="MediaElementContainer" />
+                        <Setter Target="InstructionsContainer.(RelativePanel.AlignLeftWith)" Value="MediaElementContainer" />
                         <Setter Target="InstructionsContainer.(RelativePanel.AlignBottomWith)" Value="MediaElementContainer" />
                     </VisualState.Setters>
                 </VisualState>

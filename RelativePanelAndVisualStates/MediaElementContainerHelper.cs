@@ -56,8 +56,17 @@ namespace RelativePanelAndVisualStates
 
         private static void ResizeTargetElement(FrameworkElement source, FrameworkElement target)
         {
-            target.Width = source.ActualHeight / 1.5;
-            target.Height = source.ActualHeight;
+            if ( source.ActualHeight / 1.3 > source.ActualWidth)
+            {
+                target.Width = source.ActualWidth;
+                target.Height = source.ActualHeight;
+            }
+            else
+            {
+                target.Width = source.ActualHeight / 1.5;
+                target.Height = source.ActualHeight;
+            }
+
         }
     }
 }

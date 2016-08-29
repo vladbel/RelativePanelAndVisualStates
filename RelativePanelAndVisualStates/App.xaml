@@ -7,6 +7,12 @@
 
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Assets/Fonts/FontsDictionary.xaml"/>
+                <ResourceDictionary Source="Common/Brushes.xaml" />
+                <ResourceDictionary Source="Common/StylesV2.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
             <local:HeightToWidthConverter x:Key="HeightToWidthConverter" />
             <local:WidthToHeightConverter x:Key="WidthToHeightConverter" />
         </ResourceDictionary>
